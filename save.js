@@ -1,9 +1,19 @@
-function save(){
-	var rollnumber = document.getElementById('rollnumber').value;
-	var password = document.getElementById('password').value;
-	chrome.storage.local.set({'rollnumber': rollnumber}, function(){});
+getEbyID = function(id){
+  return document.getElementById(id)
+}
+
+saveData =  function(){
+  alert(0)
+	rollnumber = getEbyID('rollnumber').value;
+	password = getEbyID('password').value;
+  message("here");
+	chrome.storage.local.set({'rollnumber': rollnumber}, function(){ console.log(rollnumber) });
 	chrome.storage.local.set({'password': password}, function(){});
 } 
-document.getElementsByName("submit")[0].addEventListener('click',function(){
-	 save();
+
+document.addEventListener('DOMContentLoaded', function() {
+  link = getEbyID('save-details');
+  link.addEventListener('click', function() {
+    saveData()
+  });
 });
